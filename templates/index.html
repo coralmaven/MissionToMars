@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Mission To Mars</title>
+</head>
+
+<body>
+
+    <div class="jumbotron text-center">
+        <h1>Mission To Mars</h1>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Refresh Mars Data</a></p>
+    </div>
+
+    <div id="nasa-news" >
+        <h3><center>News from NASA</center></h3>
+        <div class="card">
+            <div class="card-body">              
+                <h4>{{planet.nasa_news.title}}</h4>
+                <p>{{planet.nasa_news.description}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class ="row" id="jpl-images">
+        <div class = "col-md-8">
+            <h3> Mars Featured Image</h3>
+            <img src="{{planet.jpl_image}}" class="rounded float-left img-fluid" style="width: 100%;  display: block;" alt="Mars Featured Image">
+        </div>
+        <div class = "col-md-4">
+            <h4>Current Weather on Mars</h4>
+            <p>{{planet.planet_weather_tweet}}</p>
+            <br>
+            <h4>Mars Facts</h4>
+            <p>{{planet.planet_facts_html | safe}}</p>
+        </div>
+    </div>
+
+    <div class ="row" id="planet-hemispheres">
+        <div class = "col-md-12">
+            <h3><center>Mars Hemispheres</center></h3>
+            {% for h in planet.planet_hemispheres %}
+                <div class = "col-md-6">
+                    <h3>{{h.title}}</h3>
+                    <img src="{{h.img_url}}" class="rounded img-fluid" style="width: 50%; display: block;" alt={{h.title}}>                        
+                    </div>
+                </div>
+            {% endfor %}
+      </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

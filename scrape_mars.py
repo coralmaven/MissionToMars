@@ -49,7 +49,8 @@ def planet_weather_tweet(browser):
     browser.visit(url)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
-    mars_weather = soup.find('div',class_='js-tweet-text-container').p.getText()
+    mars_weather = soup.find('div',class_='js-tweet-text-container').p.getText().strip()
+    mars_weather = mars_weather.split("pic.twitter.com")[0]
     return(mars_weather)
 
 def planet_facts_html():

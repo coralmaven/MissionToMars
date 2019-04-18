@@ -12,48 +12,52 @@
 </head>
 
 <body>
-
-    <div class="jumbotron text-center">
-        <h1>Mission To Mars</h1>
-        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Refresh Mars Data</a></p>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Mission To Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Refresh Mars Data</a></p>
+        </div>
     </div>
 
-    <div id="nasa-news" >
-        <h3><center>News from NASA</center></h3>
-        <div class="card">
-            <div class="card-body">              
-                <h4>{{planet.nasa_news.title}}</h4>
-                <p>{{planet.nasa_news.description}}</p>
+    <div class="container align-left">
+        <h3>Latest Mars News</h3>
+        <h5>{{planet.nasa_news.title}}</h5>
+        <p>{{planet.nasa_news.description}}</p>
+    </div>
+
+    <div class="container align-left">
+        <div class ="row" id="jpl-images">
+            <div class = "col-md-6">
+                <h3>Featured Mars Image</h3>
+                <img src="{{planet.jpl_image}}" class="rounded float-left img-fluid" style="width: 100%;" alt="Featured Mars Image">
+            </div>
+            <div class = "col-md-6">
+                <div class="container border">
+                    <h5>Current Weather on Mars</h5>
+                    <p>{{planet.planet_weather_tweet}}</p>
+                </div>
+                <div class="container">
+                    <h5>Mars Facts</h5>
+                    <p>{{planet.planet_facts_html | safe}}</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class ="row" id="jpl-images">
-        <div class = "col-md-8">
-            <h3> Mars Featured Image</h3>
-            <img src="{{planet.jpl_image}}" class="rounded float-left img-fluid" style="width: 100%;  display: block;" alt="Mars Featured Image">
-        </div>
-        <div class = "col-md-4">
-            <h4>Current Weather on Mars</h4>
-            <p>{{planet.planet_weather_tweet}}</p>
-            <br>
-            <h4>Mars Facts</h4>
-            <p>{{planet.planet_facts_html | safe}}</p>
-        </div>
-    </div>
-
-    <div class ="row" id="planet-hemispheres">
-        <div class = "col-md-12">
+    <div class="container">
+        <div class="border-bottom">
             <h3><center>Mars Hemispheres</center></h3>
+        </div>
+        <div class ="row border-top " id="planet-hemispheres">
             {% for h in planet.planet_hemispheres %}
-                <div class = "col-md-6">
-                    <h3>{{h.title}}</h3>
-                    <img src="{{h.img_url}}" class="rounded img-fluid" style="width: 50%; display: block;" alt={{h.title}}>                        
-                    </div>
-                </div>
+                <div class="col-md-6 border">
+                    <a><img src="{{h.img_url}}" style="padding: 5px; width: 100%;" alt="{{h.title}}" /></a>
+                    <h5>{{h.title}} Enhanced</h5>                    
+                </div>            
             {% endfor %}
-      </div>
-  </div>
+        </div>
+
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
